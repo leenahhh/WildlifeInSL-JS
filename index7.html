@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <link rel="icon" href="./images/LOGO.jpg" type="image/x-icon">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="index3.css">
+      <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+      <link rel="manifest" href="/site.webmanifest">
+      <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+      <script src="main.js" defer></script>
+      <title>Sri Lankan Wildlife Introduction</title>
+    </head>
+    <body>
+      <header>
+        <nav>
+          <a href="index.html"><img src="./images/LOGO.jpg" class="logo" alt="website-logo"></a>
+          <a class="active" href="index.html">Home</a>
+          <a href="index2.html">Introduction</a>
+          <a href="index3.html">Departments</a>
+          <a href="index4.html">Sri Lankan Leopard</a>
+          <a href="index5.html">Animals</a>
+          <a id="loginBtn">Login</a>
+          <a id="logoutBtn">Logout</a>
+        </nav>
+        <img src="./images//WILPATTU.jpg" class="figurepg1" alt="Wilpattu">
+        <nav class="nav2">
+          <ul>
+            <li>
+              <a href="index6.html">Yala National Park</a>
+              <ul>
+                <li><a href="#wildlife">WILDLIFE</a></li>
+                <li><a href="#location">LOCATION</a></li>
+                <li><a href="#things_to_do">THINGS TO DO</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="index7.html">Wilpattu National Park</a>
+              <ul>
+                <li><a href="index7.html">WILDLIFE</a></li>
+                <li><a href="index7.html">LOCATION</a></li>
+                <li><a href="index7.html">THINGS TO DO</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header><br>
+
+      <div class="popup" id="loginPopup">
+        <div class = "popup-content">
+          <img id="closePopup" class="cross-img" alt="cross-img" src="./images2/cross.png">
+          <h1>LOGIN</h1>
+          <input class="loginInput" type="text" placeholder="Username" id="username">
+          <input class="loginInput"type="password" placeholder="Password" id="password">
+          <button type="button" class="button" id ="submit-button">Submit</button>
+        </div>
+      </div>
+      
+      <img class="btn" id="pencil" src="./images2/pencil.png" alt="save icon">
+      <img class="btn" id="save" src="./images2/tick.png" alt="save icon">
+
+      <section id="index7Section1">
+        <div class="p-content">
+          <p class="edit-para" id="index7Section1Para1"></p>
+        </div>
+
+        <div class="wrapper-page2"> 
+          <div class="column">
+            <img src="./images/real1.jpg" alt="yala wildlife">
+            <img src="./images/real3.jpg" alt="yala wildlife">
+            <img src="./images/real4.jpg" alt="yala wildlife">
+            <img src="./images/real5.webp" alt="yala wildlife">
+            <img src="./images/real6.jpg" alt="yala wildlife">
+            <img src="./images/real7.jpg" alt="yala wildlife">
+          </div> 
+        </div>
+      </section>
+      <br>
+      <section id="index7Section2">
+        <div class="box">
+          <div class="flex-container">
+            <h1 class="edit-Heading1" id="index7Section2Heading1"></h1><br>
+            <p class="edit-para" id="index7Section2Para1"></p>
+          </div>
+        
+          <div class="flex-container">
+            <h1 class="edit-Heading1" id="index7Section2Heading2"></h1><br>
+            <p class="edit-para" id="index7Section2Para2">
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <section id="index7Section3">
+        <div class="box">
+          <div class="flex-container longC">
+            <h1 class="edit-Heading1" id="index7Section3Heading1"></h1><br>
+
+            <h1 class="edit-Heading1" id="index7Section3Heading2"></h1>
+            <p class="edit-para" id="index7Section3Para1"></p><br>
+
+            <h1 class="edit-Heading1" id="index7Section3Heading3"></h1>
+            <p class="edit-para" id="index7Section3Para2"></p><br>
+
+            <h1 class="edit-Heading1" id="index7Section3Heading4"></h1>
+            <p class="edit-para" id="index7Section3Para3"></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="index1.HTML">1</a>
+        <a href="index2.html">2</a>
+        <a href="index3.html">3</a>
+        <a href="index4.html">4</a>
+        <a href="index5.html">5</a>
+        <a href="index6.html">6</a>
+        <a href="index7.html">7</a>
+        <a href="#">&raquo;</a>
+      </div><br>
+      <hr>
+      <br>
+    
+      <div id="copyright-container">
+        <div class="copyright">&copy; 2024 - 2024 LeenaHamdhan. All rights reserved.
+        </div>
+      </div>
+      <br>
+
+      <footer>
+        <div class="newsletter">
+          <h2 class="sub-h2">Subscribe to Our Newsletter</h2>
+          <form id="subscribe-form">
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <button type="button" id="subscriptionBtn">Subscribe</button>
+          </form>
+        </div><br>
+        <div id="subsOutput">
+          <!-- Table will be displayed here -->
+        </div>
+        <!--references:
+      Uga Escapes. (n.d.). Wilpattu Sri Lanka | Wilpattu National Park. [online] Available at: https://www.ugaescapes.com/destinations/wilpattu-national-park.html [Accessed 13 Jan. 2024].
+      Leopard Trails. (n.d.). Wilpattu National Park | Wilpattu Safari Camp. [online] Available at: https://leopardtrails.com/wilpattu-national-park/ [Accessed 13 Jan. 2024].
+      khiri.com. (2022). The Stunning Wildlife in Wilpattu National Park | Khiri Travel. [online] Available at: https://khiri.com/the-stunning-wildlife-in-wilpattu-national-park/ [Accessed 13 Jan. 2024].
+      Wilpattu Tree House. (n.d.). Wilpattu. [online] Available at: https://wilpattucorridor.lk/about/wilpattu [Accessed 13 Jan. 2024].
+      srilankanexpeditions.lk. (n.d.). Safari in Wilpattu National Park | Full Day Safari. [online] Available at: https://www.srilankanexpeditions.lk/select_one.php?tours-in-sri-lanka=Full-day-safari-in-Wilpattu-National-Park [Accessed 13 Jan. 2024].
+      Best of Ceylon. (n.d.). Safari Camping in Wilpattu | Camping Tours in Wilpattu | Wilpattu Safari camp. [online] Available at: https://www.bestofceylon.com/safari-camping-in-wilpattu.php [Accessed 13 Jan. 2024].
+      Wilpattunationalpark.com. (2019). Available at: https://www.wilpattunationalpark.com/img/home/02.jpg [Accessed 18 Jan. 2024].
+      Glampinghub.com. (2024). Available at: https://media.glampinghub.com/CACHE/images/accommodations/the-eco-team-sri-lanka-wilpattu-national-park-big-game-camp-wi-1507113111347/b16d1d72edff9140b0fda2f88a45421f.jpg [Accessed 18 Jan. 2024].
+      Dwc.gov.lk. (2024). Available at: https://www.dwc.gov.lk/wnp/wp-content/uploads/2020/01/a-herd-of-deers.jpg [Accessed 18 Jan. 2024].
+      Gstatic.com. (2024). Available at: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaLKoHgO3Hs20o740earDrs0Xzj6CVKxmwxw&usqp=CAU [Accessed 18 Jan. 2024].
+      Tripadvisor.com. (2024). Available at: https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/a6/85/0c/caption.jpg?w=500&h=400&s=1 [Accessed 18 Jan. 2024].
+      Srilankansafari.com. (2024). Available at: https://www.srilankansafari.com/images/wilpattu-national-park-in-sri-lanka/wilpattu04.jpg [Accessed 18 Jan. 2024].‌-->
+      </footer>
+  </body>
+</html>

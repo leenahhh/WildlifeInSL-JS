@@ -1,0 +1,490 @@
+*,::before,::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  line-height: calc(1em + 0.5rem);
+}
+
+html {
+  scroll-behavior: smooth;
+}   
+  
+body{
+  background-image: url('images/background.jpg');
+  background-size:cover;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+.figurepg1{
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+H1, H2, H3{
+  text-align: center;
+  font-family:garamond;
+  font-size: 25pt;
+}
+
+p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  text-align: justify;
+}
+
+a{
+  color:white;
+  font-size: 110%;
+  text-decoration: none;
+}
+
+.button{
+  text-decoration: none;
+  font-size: large;
+  color: black;
+  padding: 10px;
+  background-color: #04AA6D;
+  border-radius: 10%;
+  
+}
+
+nav {
+  background-color: #333;
+  width: 100%;
+  height: 11%;
+}
+
+nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 2% 2%;
+  text-decoration: none;
+  font-size: 110%;
+  height: fit-content;
+  cursor: pointer;
+}
+
+nav .logo {
+  height: 30px; /* Set the desired height for your logo */
+  width: auto; /* Maintain the aspect ratio */
+  vertical-align: middle;
+  
+}
+
+nav a:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+nav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+nav a:first-child{
+  margin-right: auto;
+}
+
+.nav2 {
+  background-color:#333;
+  height: auto;
+}
+
+/* Style for the main navigation list */
+.nav2 ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+/* Style for the main navigation items */
+.nav2 li {
+  position: relative;
+  padding: 10px;
+  width: auto;
+}
+
+/* Style for the sub-navigation list */
+.nav2 ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color:#333;
+}
+
+/* Style for the sub-navigation items */
+.nav2 ul ul li {
+  display: block;/*start on a new line and stretch to cover 100% of width*/
+}
+
+/* Hover effect to display sub-navigation */
+.nav2 li:hover > ul {
+  display: inherit;
+}
+
+/* Popup container */
+.popup {
+  background-color: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+}
+
+.loginInput{
+  margin:20px auto;
+  display: block;
+  width: 50%;
+  padding: 8px;
+  border: 1px solid gray;
+}
+
+/* Popup content */
+.popup-content {
+  height: 250px;
+  width: 500px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.cross-img{
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top:0;
+  right: 0;
+  cursor: pointer;
+}
+
+#logoutBtn{
+  display: none;
+  cursor: pointer;
+}
+#loginBtn{
+  cursor: pointer;
+}
+
+.btn{
+  display: none;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+  width: 90px;
+  height: 90px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+input, textarea{
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border: none;
+  margin: 3px 0;
+}
+
+input.edit-Heading1{
+  text-align: center;
+  font-family:garamond;
+  font-size: 25pt;
+  width:100%;
+  background: transparent;
+  font-weight: bold;
+}
+
+input.topic{
+  font-size: 35pt;
+}
+
+input.edit-Heading2{
+  text-align: center;
+  font-family:garamond;
+  font-size: 25pt;
+  width:100%;
+  background: transparent;
+  font-weight: bold;
+}
+
+textarea.edit-para{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: larger;
+  text-align: justify;
+  width:100%;
+  background: transparent;
+  resize: none;
+  height: 280px;
+}
+
+.p-content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 10%;
+}
+
+.box{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 30px 0;
+  gap: 2rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  width: 95%;
+  padding: 40px 30px;
+  border: 1px solid #333;
+}
+
+.longC{
+  width: 95%;
+}
+
+.pagination {
+  font-family: Arial, sans-serif;
+  font-size: 80%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 4px 6px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin: 0 5px;
+}
+
+.pagination a:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.pagination a:first-child,
+.pagination a:last-child {
+  background-color: #ddd;
+}
+
+.pagination a:first-child:hover,
+.pagination a:last-child:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+.copyright-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+
+.wrapper-page2{
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items:center;
+  margin: 2% auto;
+  margin-left: 10%;
+}
+
+.wrapper-page2 img{
+  margin: 2%;
+  border-radius: 5%;
+  margin-left: 2%;
+  width: 40%;
+  float: left;
+}
+
+h1{
+  cursor: pointer;
+  position: relative;
+  font-size: 170%;
+}
+
+.newsletter {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+#subscribe-form{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 0.5rem;
+}
+
+.sub-h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#subscriptionBtn {
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#name,#email{
+  height: 40px;
+  width: 100%;
+}
+
+.subscriptionBtn:active {
+  background-color: whitesmoke; /* Change button color when clicked */
+  color: grey;
+}
+
+#subsOutput{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+
+.subscription-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.subscription-table th, .subscription-table td {
+    border: 1px solid ;
+    padding: 8px;
+    text-align: left;
+}
+
+.subscription-table th {
+    background-color: #f2f2f2;
+}
+
+@media (min-width: 700px) {
+  /* Styles for bigger screens*/
+
+  #subscribe-form{
+    flex-direction: row;
+    width: 75%;
+    gap: 2rem;
+  }
+
+  .subscription-table {
+    width: 450px;
+    border-collapse: collapse;
+  }
+
+  textarea.edit-para{
+    height: 200px;
+  }
+
+  .pagination {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+  }
+
+  .pagination a:hover {
+    background-color: #555;
+    color: #fff;
+  }
+
+  .pagination a:first-child,
+  .pagination a:last-child {
+    background-color: #ddd;
+  }
+
+  .pagination a:first-child:hover,
+  .pagination a:last-child:hover {
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .copyright-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .copyright {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .wrapper-page2{
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+    margin: 2% auto;
+    margin-left: 8%;
+  }
+
+  .wrapper-page2 img{
+    margin: 2%;
+    border-radius: 5%;
+    margin-left: 2%;
+    width: 40%;
+    float: left;
+  }
+
+  .flex-container{
+    width: 45%;
+  }
+
+  .longC{
+    width: 95%;
+  }
+}
