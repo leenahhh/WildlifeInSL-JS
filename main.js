@@ -1,3 +1,4 @@
+//initialising variables 
 const loginPopup = document.getElementById('loginPopup');
 const loginBtn = document.getElementById('loginBtn');
 const closePopupBtn = document.getElementById('closePopup');
@@ -20,7 +21,6 @@ submitBtn.addEventListener('click', authenticateUser);
 logoutBtn.addEventListener('click', logoutUser);
 editBtn.addEventListener('click',editPageContent);
 saveBtn.addEventListener('click', saveContent);
-// Add event listener to the subscribe button
 subscriptionBtn.addEventListener("click", storeSubscription);
 
 //the code waits for the entire webpage to load in order to execute the laod content and userloggedinstatus funtions
@@ -29,20 +29,23 @@ window.addEventListener("load", () =>{
     userLoggedinStatus();
 });
 
-// Fetching and Loading JSON content
+// Fetching and Loading JSON content form the 2 files
 fetchAndStoreJSON('content.json', 'content');
 fetchAndStoreJSON('user.json', 'userData');
+//'userData' is a key or identifier used to store the fetched JSON data in the local storage.
+//Location where the fetched JSON data will be stored in the local storage.
 
 function fetchAndStoreJSON(jsonFile, storageKey) {
+//parameters: URL to the json, the key json data will be stored in the local storage
     fetch(jsonFile)
-        .then(response => {
+        .then(response => {//promise
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json();
         })
         .then(data => {
-            localStorage.setItem(storageKey, JSON.stringify(data));
+            localStorage.setItem(storageKey, JSON.stringify(data));//json can only store strings 
             console.log(`JSON data fetched from ${jsonFile} and stored in local storage with key ${storageKey}`);
         })
         .catch(error => console.error('There was a problem fetching the JSON:', error));
@@ -57,10 +60,11 @@ function closeLoginPopup(){
 }
 
 function authenticateUser() {
+    //get data from input fields
     const username = usernameinput.value;
     const password = passwordinput.value;
     
-    // Get the user data from the localStorage
+    // Get the user data from the localStorage and parses it into a JavaScript object.
     const userData = JSON.parse(localStorage.getItem('userData'));
     
     // Checks if the data exists
@@ -68,13 +72,13 @@ function authenticateUser() {
         // Loop through the users array to find a match
         for(const user of userData.users) {
             if(user.username === username && user.password === password) {
-                // Authentication successful
                 alert('Authentication successful');
                 loginPopup.style.display="none";
-                loginBtn.style.display="none";
-                editBtn.style.display="block";
+                loginBtn.style.display="none";//hides login btn
+                editBtn.style.display="block";//shows edit btn
                 logoutBtn.style.display="block";
                 sessionStorage.setItem('isLoggedIn', "true");
+                //sets a session variable named 'isLoggedIn' to "true" to indicate that the user is logged in.
                 displaySubscriptions();
                 return;
             }
@@ -90,13 +94,13 @@ function logoutUser(){
     editBtn.style.display="none";
     saveBtn.style.display="none";
     logoutBtn.style.display="none";
-    subsOutput.innerHTML = '';
-    sessionStorage.removeItem('isLoggedIn');
+    subsOutput.innerHTML = '';//clears any subscription displayed on the page by converting to an empty string
+    sessionStorage.removeItem('isLoggedIn');// to remove the loggedIn session variable to indicate that the user is logged out.
 }
 
 //upon logging in, an isLoggedIn variable is set to True which is then retrieved to check the user logged in status  
 function userLoggedinStatus(){
-    let loggedInStatus = sessionStorage.getItem('isLoggedIn');
+    let loggedInStatus = sessionStorage.getItem('isLoggedIn');//retrives the value of the logged in session variable and stores it in the 'loggedInSt'
     if(loggedInStatus == "true"){
         loginBtn.style.display="none";
         editBtn.style.display="block";
@@ -107,42 +111,57 @@ function userLoggedinStatus(){
         editBtn.style.display="none";
         saveBtn.style.display="none";
         logoutBtn.style.display="none";
-        subsOutput.innerHTML = '';
+        subsOutput.innerHTML = '';//clears any subscription displayed on the page by converting to an empty string
     }
     
 }
 
 function loadContent() {
     const storedContent = JSON.parse(localStorage.getItem('content'));
+    //Retrieves the stored content from local storage and parses it into a JavaScript object.
     const currentPage = getCurrentPage();
 
     if (storedContent) {
         const pageData = storedContent[currentPage];
+        //Retrieves the data specific to the current page from the stored content.
 
         if (pageData) {
             // Loop through sections
             for (const sectionKey in pageData) {
                 if (pageData.hasOwnProperty(sectionKey)) {
+                    //Iterates through each section of the page data.
                     const section = pageData[sectionKey];
+                    //Retrieves the section object.
                     const sectionNumber = sectionKey.replace('section', '');
+                    //Extracts the section number from the section key.
 
                     for (const key in section) {
+                        //Iterates through each key-value pair in the section
                         if (section.hasOwnProperty(key)) {
                             const value = section[key];
+                            //Retrieves the value associated with the key
                             const elementId = `${currentPage}Section${sectionNumber}${key}`;
+                            //Generates the ID of the corresponding HTML element.
                             const element = document.getElementById(elementId);
-
+                            //Finds the HTML element by its ID.
                             if (element.tagName.toLowerCase() === 'ul') {
+                                //Checks if the element is a list.
                                 // If it's a list, create list items
                                 const listElement = document.createElement('ul');
+                                //Creates a new <ul> element.
                                 value.forEach(item => {
+                                    //Iterates through each item in the value array
                                     const listItem = document.createElement('li');
                                     listItem.textContent = item;
+                                    //Sets the text content of the list item.
                                     listElement.appendChild(listItem);
+                                    //Appends the list item to the list.
                                 });
                                 element.appendChild(listElement);
+                                //Appends the list to the HTML element.
                             } else if (element) {
-                                element.textContent = value;
+                                // If the element is not a list, sets its text content
+                                element.textContent = value;//Sets the text content of the element.
                             } else {
                                 console.log(`Element with ID ${elementId} not found.`);
                             }
@@ -163,15 +182,22 @@ function getCurrentPage() {
     const url = window.location.href;
     // Remove the .html extension from the url name
     const pageName = url.substring(url.lastIndexOf('/') + 1).replace('.html', '');
+    //Takes the page name from the URL by finding the last '/' and taking everything after it. It will include the '.html' extension.
+    //Removes the '.html' extension from the page name using the replace method.
     return pageName;
 }
 
 function editableContent(elementId) {
     const element = document.getElementById(elementId);
+    //gets the element from the DOM with the specified ID.
     
     // Check if the element exists
     if (element) {
         // Create a new editable element based on the type of the original element
+        //The subsequent if-else statements determine the type of the element and create an appropriate editable element for it:
+        //For headings (h1, h2, h3, h4, h5), it creates an input element.
+        //For paragraphs (p), it creates a textarea element.
+        //For unordered lists (ul), it converts each list item (li) into an editable input element.
         let editableElement;
         if (element.tagName.toLowerCase() === 'h1') {
             editableElement = document.createElement('input');
@@ -231,10 +257,13 @@ function editableContent(elementId) {
 //retrieve data to edit the page content 
 function editPageContent(){
     const savedData = JSON.parse(localStorage.getItem('content'));
+    //function begins by fetching the saved content data from the local storage and parsing it into a JavaScript object.
     const currentlyWorkingPage = getCurrentPage();
+    //retrieves the name of the currently active page using the getCurrentPage function.
     saveBtn.style.display = "block";
     editBtn.style.display = "none";
 
+    //extracts the keys (page names) from the saved data object to determine which page's content needs to be edited.
     const index = Object.keys(savedData)[0];
     const index2 = Object.keys(savedData)[1];
     const index3 = Object.keys(savedData)[2];
@@ -243,6 +272,8 @@ function editPageContent(){
     const index6 = Object.keys(savedData)[5];
     const index7 = Object.keys(savedData)[6];
 
+    //The function checks if the currently active page matches the first saved page (index).
+    //If the currently active page matches, it proceeds to make the content of each section editable by calling the editableContent function for each relevant element ID.
     if(currentlyWorkingPage==index){
         editableContent("indexSection1Heading1");
         editableContent("indexSection1Heading2");
@@ -390,6 +421,7 @@ function revertContent(elementId) {
 
         // Revert the element based on its tag name and class
         switch (element.tagName.toLowerCase()) {
+            //It retrieves the parent node of the element to be reverted, which will be used to replace the editable element with the reverted element.
             case 'input':
                 if (element.classList.contains('edit-Heading1')) {
                     revertElement = document.createElement('h1');
@@ -401,6 +433,7 @@ function revertContent(elementId) {
                 break;
             case 'textarea':
                 revertElement = document.createElement('p');
+                //It initializes a variable revertElement to hold the new element after reverting.
                 break;
             case 'ul':
                 case 'ul':
@@ -420,10 +453,10 @@ function revertContent(elementId) {
 
 function saveContent() {
     const currentlyWorkingPage = getCurrentPage();
-    const savedData = JSON.parse(localStorage.getItem('content'));
+    const savedData = JSON.parse(localStorage.getItem('content'));//'context' key
     editBtn.style.display = 'block';
     saveBtn.style.display = 'none';
-
+    //retrieves the keys of the savedData object to access each section.
     const index = Object.keys(savedData)[0];
     const index2 = Object.keys(savedData)[1];
     const index3 = Object.keys(savedData)[2];
@@ -431,8 +464,9 @@ function saveContent() {
     const index5=Object.keys(savedData)[4];
     const index6=Object.keys(savedData)[5];
     const index7=Object.keys(savedData)[6];
-
+    //checks if the currently working page matches the index page.
     if (currentlyWorkingPage==index){
+        //updates the savedData object with the edited content from the input fields.
         savedData.index.section1.Heading1 = document.getElementById('indexSection1Heading1').value;
         savedData.index.section1.Heading2 = document.getElementById('indexSection1Heading2').value;
         savedData.index.section1.Heading3 = document.getElementById('indexSection1Heading3').value;
@@ -445,6 +479,7 @@ function saveContent() {
         savedData.index.section2.Para2 = document.getElementById('indexSection2Para2').value;
         savedData.index.section2.Para3 = document.getElementById('indexSection2Para3').value;
 
+        //saves them as an array.
         savedData.index.section3.Para1 = document.getElementById('indexSection3Para1').value;
         const indexListItems = document.querySelectorAll('#indexSection3List input');
         savedData.index.section3.List = Array.from(indexListItems).map(item => item.value);
@@ -463,6 +498,7 @@ function saveContent() {
         savedData.index.section5.Para3 = document.getElementById('indexSection5Para3').value;
 
 
+        //After saving the content, it reverts the content of each edited element back to its original state using the revertContent function.
         revertContent("indexSection1Heading1");
         revertContent("indexSection1Heading2");
         revertContent("indexSection1Heading3");
@@ -700,13 +736,17 @@ function saveContent() {
 // Function to handle subscription
 function storeSubscription() {
     const name = nameInput.value.trim();
+    // Trim whitespace from the input values for name and email
     const email = emailInput.value.trim();
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     
     if (name && email) {
         // Save the subscription data to localStorage
+        // Retrieve existing subscriptions from localStorage or initialize an empty array
         const subscriptions = JSON.parse(localStorage.getItem("subscriptions")) || [];
+        // Push the new subscription data to the subscriptions array
         subscriptions.push({ name, email });
+        // Save the updated subscriptions array back to localStorage
         localStorage.setItem("subscriptions", JSON.stringify(subscriptions));
         
         // Display success message
@@ -726,12 +766,13 @@ function storeSubscription() {
 
 // Function to display subscriptions in a table
 function displaySubscriptions() {
-    // Check if user is logged in
+    // Check if user is logged in by retrieving the isLoggedIn status from sessionStorage
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
 
     if (isLoggedIn !== 'true') {
         return;
     }
+    // If user is not logged in, exit the function
 
     const subscriptions = JSON.parse(localStorage.getItem("subscriptions")) || [];
 
@@ -758,14 +799,17 @@ function displaySubscriptions() {
     });
     table.appendChild(headerRow);
 
-    // Create rows for each subscription
+    // Create rows for each subscription 
     subscriptions.forEach(subscription => {
         const row = document.createElement("tr");
+        // Iterate through each key-value pair in the subscription object
         for (const key in subscription) {
+            // Create a table cell for each value and populate with subscription data
             const cell = document.createElement("td");
             cell.textContent = subscription[key];
             row.appendChild(cell);
         }
+        // Append the row to the table
         table.appendChild(row);
     });
 
